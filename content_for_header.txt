@@ -1,0 +1,9 @@
+  {% capture contentforheader %}{{ content_for_header }}{% endcapture %}
+  {% assign contentforheaderRepalced = contentforheader 
+    | replace: "for (var i = 0; i < urls.length; i++)","var uniqueUrls = [...new Set(urls)]; for (var i = 0; i < uniqueUrls.length; i++)"
+    | replace: "s.src = urls[i];","s.src = uniqueUrls[i];"
+    | replace: "x.parentNode.insertBefore(s, x);", "x.parentNode.insertBefore(s, x); var y = document.createElement('link'); y.setAttribute('rel', 'preload'); y.setAttribute('as', 'script'); y.setAttribute('href', uniqueUrls[i]); var z = document.getElementsByTagName('link')[0]; z.parentNode.insertBefore(y, z); console.log(x,z);" 
+    | replace: "window.attachEvent('onload', asyncLoad);", "setTimeout(() => {window.attachEvent('onload', asyncLoad);}, 1780);"
+    | replace: "window.addEventListener('load', asyncLoad, false);", "setTimeout(() => {window.addEventListener('load', asyncLoad, true);}, 1780);"
+  %}
+  {{ contentforheaderRepalced }}

@@ -1,0 +1,40 @@
+{%- comment -%}LoadJS{%- endcomment -%}
+<script>!function(e){var t=function(t,o,n){"use strict";var r,a=e.document.getElementsByTagName("script")[0],c=e.document.createElement("script");return"boolean"==typeof o&&(r=n,n=o,o=r),c.src=t,c.async=!n,a.parentNode.insertBefore(c,a),o&&"function"==typeof o&&(c.onload=o),c};"undefined"!=typeof module?module.exports=t:e.loadJS=t}("undefined"!=typeof global?global:this);</script>
+
+{%- comment -%}Data Type change JS{%- endcomment -%}
+<script>
+const observers = new MutationObserver((mutations) => {
+    mutations.forEach(({ addedNodes }) => {
+        addedNodes.forEach((node) => {
+            if (node.nodeType === 1) {
+                if (node.tagName === "SCRIPT") {
+                    console.log(node.tagName, node.src);
+                }
+                if (node.tagName === "SCRIPT") {
+                    if (node.src.includes("analytics")) {
+                        node.setAttribute("data-src", node.src);
+                        node.removeAttribute("src");
+                        console.log("analytics", node.dataSrc);
+                    }
+                    if (node.src.includes("cdn.shopify.com/extensions")) {
+                        node.setAttribute("data-src", node.src);
+                        node.removeAttribute("src");
+                    }
+                    if (node.textContent.includes("web_pixels_manager_load")) {
+                        node.type = "text/javascript";
+                    }
+                }
+                if (node.tagName === "LINK" && node.href.includes("cdn.shopify.com/shopifycloud/checkout-web/assets")) {
+                    node.setAttribute("data-href", node.href);
+                    node.removeAttribute("href");
+                }
+            }
+        });
+    });
+});
+
+observers.observe(document.documentElement, {
+    childList: true,
+    subtree: true,
+});
+</script>

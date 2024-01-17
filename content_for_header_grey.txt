@@ -1,0 +1,10 @@
+{%- assign addEventListenerDOMContentLoaded = "document.addEventListener('DOMContentLoaded'" -%}
+{%- assign addEventListenerGreyAsyncLoading = "document.addEventListener('GreyAsyncLoading'" -%} 
+{%- assign EaddEventListenerDOMContentLoaded = 'e.addEventListener("DOMContentLoaded"' -%}
+{%- assign EaddEventListenerGreyAsyncLoading = "e.addEventListener('GreyAsyncLoading'" -%}
+{%- assign asyncLoad = ", asyncLoad" -%}
+{%- assign function = ", function(){}" -%}
+{%- assign windowattachEvent = "if(window.attachEvent)" -%}
+{%- assign windowattachEventGreyAsyncLoading = "document.addEventListener('GreyAsyncLoading', function(event){asyncLoad();}); if(window.attachEvent)" -%}
+
+{{ content_for_header | replace: 'src=' , 'data-src=' | replace: addEventListenerDOMContentLoaded , addEventListenerGreyAsyncLoading  | replace: EaddEventListenerDOMContentLoaded , EaddEventListenerGreyAsyncLoading | replace: asyncLoad , function | replace: windowattachEvent , windowattachEventGreyAsyncLoading }}

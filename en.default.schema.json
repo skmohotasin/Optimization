@@ -1,0 +1,12 @@
+"settings_schema": {
+    "performance":{
+      "name": "Performance",
+      "settings": {
+       "header_general": "General",
+         "data_manipulation": {
+          "label": "Data manipulation",
+           "info": "It will enable 3rd party js and css load after DOMContentReady"
+        }
+      }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "name": "t:settings_schema.performance.name",
+    "settings": [
+      {
+        "type": "header",
+        "content": "t:settings_schema.performance.settings.header_general"
+      },
+      {
+        "type": "checkbox",
+        "id": "data_manipulation",
+        "label": "t:settings_schema.performance.settings.data_manipulation.label",
+        "info": "t:settings_schema.performance.settings.data_manipulation.info",
+        "default": false
+      }
+    ]
+  }

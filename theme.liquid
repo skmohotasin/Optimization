@@ -1,0 +1,7 @@
+{%- if request.design_mode -%}
+    {{ content_for_header }}
+{%- elsif settings.data_manipulation -%}
+    {{ content_for_header | replace: ".src =", ".dataset.src ="}}
+{%- else -%}
+    {{ content_for_header }}
+{%- endif -%}
